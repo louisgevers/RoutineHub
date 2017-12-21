@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>RoutineHub | Get your life together.</title>
+	<meta charset="UTF-8"/>
+	<link rel="stylesheet" type="text/css" href="EntryPageStyleSheet.css"/>
+	<link href="https://fonts.googleapis.com/css?family=Dosis:800" rel="stylesheet"/>
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+<body>
+		<img src="Images/DreamCatcherLogo.png" alt="RoutineHub Logo" id="logo"/>	
+		
+	<header>
+		<h1>RoutineHub</h1>
+	</header>
+	
+	
+	<img src="Images/EntryPageBackgroundImage.jpg" alt="Inspirational background image" id="backgroundimg"/>
+	
+	<div id="TransparentBlackBlock" class="blackbox goaway">
+	
+		<h2>It's time to get your life together.</h2>
+		<p><q>Motivation is what gets you started.<br>
+		<b>Habit</b> is what <b>keeps you going.</q></b></p>
+		<p>~ John Rohn</p>
+	<div class="descriptionImgs">
+		<div id="CreateYourHabit" class="descriptionImg">
+			<img src="Images/CreateYourHabitsImage.png" alt="Calendar Image"/>
+		</div>
+		<div id="TrackYourProgress" class="descriptionImg">
+			<img src="Images/TrackYourProgressImage.png" alt="Progress Bar"/>
+		</div>
+		<div id="AchieveGoals" class="descriptionImg">
+			<img src="Images/AchieveYourGoalsImage.png" alt="Flag Image"/>
+		</div>
+	</div>
+
+	<div class="descriptionTxt">
+			<p>Create your habits</p>
+			<p>Track your progress</p>
+			<p>Achieve your goals</p>		
+	</div>
+		
+		
+		<div class='userbtns'>
+			<button id="openLoginBoxButton">Login</button>
+			<button id="openSignupBoxButton">Sign up now</button>
+		</div>
+		
+	</div>
+	
+	<div id="LoginModalBox" class="modalBox goaway">
+		<div class="modalBoxContent">
+			<button class="close" id="closeLogin">&times;</button>
+			<h3>Welcome back</h3>
+			<form action="">
+				Username<br/>
+				<input type="text" name="username" spellcheck="false"/><br/>
+				Password<br/>
+				<input type="password" name="password"/><br/>
+			</form>
+			<input class="modalButton" id="loginButton" type="submit" value="Login"/>
+		</div>
+	</div>
+	
+	<div id="SignUpModalBox" class="modalBox goaway">
+		<div class="modalBoxContent">
+			<button class="close" id="closeSignUp">&times;</button>
+			<h3>Welcome !</h3>
+			<form action="">
+				Username<br/>
+				<input type="text" name="username" spellcheck="false"/><br/>
+				Password<br/>
+				<input type="password" name="password"/><br/>
+				Repeat password</br>
+				<input type="password" name="passwordRep"/><br/>
+			</form>
+			<input class="modalButton" id="signUpButton" type="submit" value="Sign up"/>
+		</div>
+	</div>
+	
+	<footer>
+	</footer>
+	
+	<script src="EntryPageScript.js"></script>
+</body>
+</html>
