@@ -1,0 +1,276 @@
+body {
+    background-color: #203238;
+}
+
+header {
+    background-color: #2F4A53;
+    z-index: 99;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+    box-shadow: 0 2px 8px black;
+    padding-top: 40px;
+    padding-bottom: 10px;
+}
+
+#logo {
+    position: relative;
+    height: 120px;
+    z-index: 100;
+}
+
+h1 {
+    position: relative;
+    left: 130px;
+    font-family: 'Dosis', sans-serif;
+    color: #FCF7D0;
+    text-shadow: 0 0 5px black;
+    font-size: 36px;
+    display: inline;
+}
+
+#backgroundimg {
+    position: absolute;
+    display: block;
+    z-index: -1;
+    left: 0;
+    top: 80px;
+    width: 100%;
+    box-shadow: 0 2px 8px black;
+}
+
+.blackbox {
+    position: relative;
+    opacity: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background-color: rgba(38, 38, 38, 0.85);
+    border-radius: 25px;
+    width: 800px;
+    padding: 20px;
+}
+
+.goaway {
+    -webkit-transition: all 1s ease;  
+    -moz-transition: all 1s ease;  
+    -o-transition: all 1s ease;  
+    -ms-transition: all 1s ease;  
+    transition: all 1s ease;
+}
+
+.blackbox-away {
+    transform: translate(-50%, 350px);
+    opacity: 0;
+}
+
+#TransparentBlackBlock h2 {
+    text-align: center;
+    font-family: 'Fjalla One', sans-serif;    
+    color: #FFFFFF;
+    text-shadow: 0 0 5px black;
+    font-size: 28px; 
+}
+
+#TransparentBlackBlock p {
+    font-family: 'Open Sans', sans-serif;    
+    text-align: center;
+    color: #E7E6E6;
+}
+
+#TransparentBlackBlock p b {
+    font-weight: bold;    
+}
+
+#TransparentBlackBlock p q::before, #TransparentBlackBlock p q::after  {
+    content: "\""
+}
+
+.descriptionImgs {
+    column-count: 3;
+    padding-top: 30px;
+}
+
+.descriptionImg img {
+    width: 50%;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.descriptionTxt p {
+    width: 33%;
+    float: left;
+}
+
+.userbtns {
+    text-align: center;
+    margin-top: 10%;
+    margin-bottom: 2%;
+}
+
+#openLoginBoxButton {
+    background-color: #D0CECE;
+    border: none;
+    outline: none;
+    color: #595959;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    width: 40%;
+    padding: 2%;
+    border-radius: 7px;
+    position: relative;
+    margin-right: 2%;
+    font-family: 'Dosis', sans-serif;         
+}
+
+#openLoginBoxButton:hover {
+    color: #D0CECE;
+    border: none;
+    background-color: #595959;
+}
+
+#openLoginBoxButton:active {
+    box-shadow: inset 0 0 10px black;
+}
+
+#openSignupBoxButton {
+    background-color: #79C180;
+    border: none;
+    outline: none;
+    color: #FFFFFF;
+    text-align: center;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    width: 40%;
+    padding: 2%;
+    border-radius: 7px;
+    position: relative;
+    margin-left: 2%;
+    font-family: 'Dosis', sans-serif;      
+}
+
+#openSignupBoxButton:hover {
+    color: #79C180;
+    border: none;
+    background-color: #595959;
+}
+
+#openSignupBoxButton:active {
+    box-shadow: inset 0 0 10px black;
+}
+
+footer {
+    margin: 30%;
+}
+
+.modalBox {
+    display: none;
+    opacity: 0;
+    position: absolute;
+    z-index: 98;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transform: translate(0, -50%);
+}
+
+.modalBox-here{
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+.modalBoxContent {
+    position: relative;
+    margin: 10% auto;
+    width: 30em;
+    overflow: hidden;
+    border-radius: 20px;
+    background-color: rgba(38, 38, 38, 0.85);
+}
+
+.close {
+    margin: 5% 5%;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+}
+
+.close:hover {
+    color: #D0CECE;
+}
+
+.close:active {
+    color: #595959;
+    
+}
+
+.close:active {
+    outline: none;
+}
+
+.modalBoxContent h3 {
+    margin-left: 15%;
+    color: #FFFFFF;
+    font-family: 'Fjalla One', sans-serif;
+    font-size: 30px;
+    text-align: center;
+}
+
+.modalBoxContent form {
+    margin-left: 5%;
+    font-family: 'Dosis', sans-serif;
+    color: #D0CECE;
+}
+
+.modalBoxContent form input {
+    width: 90%;
+    margin-bottom: 6%;
+    padding: 2%;
+    border: none;
+    border-bottom: 2px solid #D0CECE;
+    background-color: rgba(0, 0, 0, 0);
+    color: #ffffff;
+    font-size: 26px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.modalBoxContent form input:focus {
+    outline: none;
+    border-bottom: 4px solid #FFFFFF;
+}
+
+.modalButton {
+    margin: 5%;
+    font-family: 'Open Sans', sans-serif;  
+    width: 90%;
+    position: relative;
+    text-align: center;
+    border: none;
+    outline: none;
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(58, 90, 100);
+    color: #FFFFFF;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.modalButton:hover {
+    background-color: #2F4A53;
+}
+
+.modalButton:active{
+    box-shadow: inset 0 0 10px black;
+}

@@ -1,0 +1,61 @@
+body {
+    background-color: #E6E6E6;
+}
+
+header input {
+    position: absolute;
+    display: block;
+    margin: auto;
+    width: 30em;
+    top: 70%;
+    left: 50%;
+    padding: 0.3em;
+    transform: translate(-50%, 0);
+    border-radius: 2px;
+}
+
+header a {
+    position: absolute;
+    right: 2em;
+    top: 2em;
+    background-color: #79C180;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Dosis', sans-serif; 
+    padding: 0.5em;
+    border-radius: 3px;
+}
+
+header a:hover {
+    color: #79C180;
+    background-color: #595959;
+}
+
+.columns {
+    column-count: 2;
+    width: 100%;
+}
+
+.column {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+.column h2 {
+    color: #595959;
+    font-family: 'Fjalla one', sans-serif;
+}
+
+.infoButton {
+    background-image: url(/Images/InformationIcon.png);
+    border: none;
+    background-repeat: no-repeat;
+    height: 50px;
+    width: 50px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.infoButton span {
+    display: none;
+}
