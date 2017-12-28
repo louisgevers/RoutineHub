@@ -21,8 +21,8 @@ var goalOne = {
             "difficulty":"1",
             "days":[false, true, true, true, true, true, false],
             "notes":"Obviously.",
-            "currentStreak":1,
-            "highStreak":1,
+            "currentStreak":0,
+            "highStreak":0,
             "accomplished":false
         },
         {
@@ -46,8 +46,8 @@ var goalTwo = {
             "difficulty":"2",
             "days":[true, true, true, true, true, true, true],
             "notes":"Keep going.",
-            "currentStreak":1,
-            "highStreak":2,
+            "currentStreak":0,
+            "highStreak":0,
             "accomplished":false
         }
     ]
