@@ -20,19 +20,22 @@
 			<p><a href="EntryPage.html">Sign out</a></p>
 	</header>
 
-	<div class="columns">
+	<div class="cssclearer"></div>
+
 	<!-- The Goals column -->
 	<div class="column">
 
 		<h2>Goals</h2>
+		<div class="cssclearer"></div>
 		<button class="infoButton" id="goalsInfoBtn"><span>Info</span></button>
-		<button class="addButton" id="addGoalBtn">Add goal</button>
-	<div class="columnContent">
+		<button class="addButton" id="addGoalBtn"><span>Add goal</span></button>
 
-		<button class="dropbtn" id="filterGoalsBtn">Filter</button>
-		<div class="dropbtncontent" id="goalsFilterBtns"></div>
-		<div id="goalsList">
-		</div>
+		<div class="cssclearer"></div>
+
+		<div class="columnContent">
+			<div id="dropdown"><button class="dropbtn" id="filterGoalsBtn"><span>▼ </span>Filter</button>
+				<div class="dropbtncontent" id="goalsFilterBtns"></div></div>
+			<div id="goalsList"></div>
 	</div>
 
 	</div>
@@ -41,8 +44,11 @@
 	<div class="column">
 
 		<h2>Habits</h2>
+		<div class="cssclearer"></div>		
 		<button class="infoButton" id="habitsInfoBtn"><span>Info</span></button>
-		<button class="addButton" id="addHabitBtn">Add habits</button>
+		<button class="addButton" id="addHabitBtn"><span>Add habits</span></button>
+
+		<div class="cssclearer"></div>		
 
 		<div class="columnContent" id="habitsList">
 
@@ -54,124 +60,145 @@
 	<!-- The Goals info modal box (should be invisible) -->
 	<div class="modalBox" id="goalsInfoBox">
 
-		<button class="close" id="closeGoalsInfo">&times;</button>
-
-		<h3>Goals</h3>
-		<p>This section contains your goals you'll like to follow.<br>
-			When adding adding a goal you can choose one of the categories for it,
-			you can then later filter your goals per category to get a better overview
-			of a specific domain. Each goal contains habits that you have chosen to add,
-			Accomplishing these habits will improve the score of this goal. Missing a habit
-			or doing a bad habit will change the color of your goal. <br>
-			The colors are chosen as follow:
-			<ul>
-				<li>Green = good job!</li>
-				<li>Orange = needs attention</li>
-				<li>Red = you really should accomplish these habits</li>
-			</ul>
-			A sandglass icon next to a goal means a habit still needs to be 
-			accomplished today.
-			</p>
-
+		<div class="modalBoxContent">
+			<button class="close" id="closeGoalsInfo">&times;</button>				
+			<h3>Goals</h3>
+			<p>This section contains your goals you'll like to follow.<br>
+				When adding adding a goal you can choose one of the categories for it,
+				you can then later filter your goals per category to get a better overview
+				of a specific domain. Each goal contains habits that you have chosen to add,
+				Accomplishing these habits will improve the score of this goal. Missing a habit
+				or doing a bad habit will change the color of your goal. <br>
+				The colors are chosen as follow:</p>
+				<ul>
+					<li>Green = good job!</li>
+					<li>Orange = needs attention</li>
+					<li>Red = you really should accomplish these habits</li>
+				</ul>
+				<p>
+				A sandglass icon next to a goal means a habit still needs to be 
+				accomplished today.
+				</p>
+		</div>
+>
 	</div>
 
 	<!-- The Habits info modal box (should be invisible) -->
 	<div class="modalBox" id="habitsInfoBox">
 
-			<button class="close" id="closeHabitsInfo">&times;</button>
+			<div class="modalBoxContent">
+						
+				<button class="close" id="closeHabitsInfo">&times;</button>
 
-			<h3>Habits</h3>
-			<p>This section contains the habits linked to the chosen goal.<br>
-				When you have finished a habit, you can check them of here,
-				this will give you points according to the difficulty assigned
-				to it. Beware, doing a bad habit will lower your score, and not
-				finishing a habit that was due will stop your current streak.
-				So stick to the good habits and do them when they need to be done!
-				</p>
+				<h3>Habits</h3>
+				<p>This section contains the habits linked to the chosen goal.<br>
+					When you have finished a habit, you can check them of here,
+					this will give you points according to the difficulty assigned
+					to it. Beware, doing a bad habit will lower your score, and not
+					finishing a habit that was due will stop your current streak.
+					So stick to the good habits and do them when they need to be done!
+					</p>
+
+			</div>
 
 		</div>
 
 
 	<div class="modalBox" id="addGoalBox">
-		<h3>New Goal</h3>
-		<form id="newGoalInput">
-			Goal:<br>
-			<input type="text" name="goalName"/><br>
-			Category:<br>
-			<input type="text" name="goalCategory"/><br>
-		</form>
-		<button id="createGoalBtn">Add new goal</button>
-		<button id="cancelCreateGoalBtn">Cancel</button>
+		<div class="modalBoxContent">					
+			<h3>New Goal</h3>
+			<form id="newGoalInput">
+				Goal:<br>
+				<input type="text" name="goalName"/><br>
+				Category:<br>
+				<input type="text" name="goalCategory"/><br>
+			</form>
+			<button class="modalButton confirmBtn" id="createGoalBtn">Add new goal</button>
+			<button class="modalButton cancelBtn" id="cancelCreateGoalBtn">Cancel</button>
+		</div>					
 	</div>
 
 	<div class="modalBox" id="editGoalBox">
-		<h3>Edit Goal</h3>
-		<form id="editGoalInput">
-			Goal:<br>
-			<input type="text" name="goalName"/><br>
-			Category:<br>
-			<input type="text" name="goalCategory"/><br>
-		</form>
-		<button id="saveGoalEditsBtn">Save changes</button>
-		<button id="deleteGoalBtn">Delete goal</button>
-		<button id="cancelEditGoalBtn">Cancel</button>
+		<div class="modalBoxContent">					
+			<h3>Edit Goal</h3>
+			<form id="editGoalInput">
+				Goal:<br>
+				<input type="text" name="goalName"/><br>
+				Category:<br>
+				<input type="text" name="goalCategory"/><br>
+			</form>
+			<button class="modalButton confirmBtn" id="saveGoalEditsBtn">Save changes</button>
+			<button class="modalButton deleteBtn" id="deleteGoalBtn">Delete goal</button>
+			<button class="modalButton cancelBtn" id="cancelEditGoalBtn">Cancel</button>
+		</div>
 	</div>
 
 	<div class="modalBox" id="createHabitBox">
-		<h3>Add new habit</h3>
-		<form id="newHabitInput">
-			Habit:<br>
-			<input type="text" name="habitName"/><br>
-			Difficulty:<br>
-			<form id="habitDifficulty">
-				<input type="radio" id="habitDiff-1" name="habitDiff" value="-1"/> Bad habit<br>
-				<input type="radio" id="habitDiff0" name="habitDiff" value="0" checked/> Easy habit<br>
-				<input type="radio" id="habitDiff1" name="habitDiff" value="1"/> Medium habit<br>
-				<input type="radio" id="habitDiff2" name="habitDiff" value="2"/> Hard habit<br>
+		<div class="modalBoxContent">					
+			<h3>Add new habit</h3>
+			<form id="newHabitInput">
+				Habit:<br>
+				<input type="text" name="habitName"/><br>
 			</form>
-			Repeat:<br>
-			<input type="checkbox" id="habitSu" name="habitDay" value="su"/> Sunday<br>			
-			<input type="checkbox" id="habitMo" name="habitDay" value="mo"/> Monday<br>
-			<input type="checkbox" id="habitTu" name="habitDay" value="tu"/> Tuesday<br>
-			<input type="checkbox" id="habitWe" name="habitDay" value="we"/> Wednesday<br>
-			<input type="checkbox" id="habitTh" name="habitDay" value="th"/> Thursday<br>
-			<input type="checkbox" id="habitFr" name="habitDay" value="fr"/> Friday<br>
-			<input type="checkbox" id="habitSa" name="habitDay" value="sa"/> Saturday<br>			
-			
-			Notes:<br>
-			<textarea id="habitNotes" name="habitNotes" cols="40" row="5"></textarea><br>
-		</form>
-		<button id="createHabitBtn">Add new habit</button>
-		<button id="cancelCreateHabitBtn">Cancel</button>
+				<form id="habitDifficulty">
+					Difficulty:<br>						
+					<input type="radio" id="habitDiff-1" name="habitDiff" value="-1"/> Bad habit<br>
+					<input type="radio" id="habitDiff0" name="habitDiff" value="0" checked/> Easy habit<br>
+					<input type="radio" id="habitDiff1" name="habitDiff" value="1"/> Medium habit<br>
+					<input type="radio" id="habitDiff2" name="habitDiff" value="2"/> Hard habit<br>
+				</form>
+				<form id="habitDays">
+					Repeat:<br>						
+					<input type="checkbox" id="habitSu" name="habitDay" value="su"/> Sunday<br>			
+					<input type="checkbox" id="habitMo" name="habitDay" value="mo"/> Monday<br>
+					<input type="checkbox" id="habitTu" name="habitDay" value="tu"/> Tuesday<br>
+					<input type="checkbox" id="habitWe" name="habitDay" value="we"/> Wednesday<br>
+					<input type="checkbox" id="habitTh" name="habitDay" value="th"/> Thursday<br>
+					<input type="checkbox" id="habitFr" name="habitDay" value="fr"/> Friday<br>
+					<input type="checkbox" id="habitSa" name="habitDay" value="sa"/> Saturday<br>			
+				</form>
+				<form id="habitNotesInput">
+					Notes:<br>
+					<textarea id="habitNotes" name="habitNotes" cols="40" row="5"></textarea><br>
+				</form>
+			</form>
+			<button class="modalButton confirmBtn" id="createHabitBtn">Add new habit</button>
+			<button class="modalButton cancelBtn" id="cancelCreateHabitBtn">Cancel</button>
+		</div>
 	</div>
 
 	<div class="modalBox" id="editHabitBox">
-		<h3>Edit habit</h3>
-		<form id="editHabitInput">
-			Habit:<br>
-			<input type="text" name="habitNameEdit"/><br>
-			Difficulty:<br>
+		<div class="modalBoxContent">					
+			<h3>Edit habit</h3>
+			<form id="editHabitInput">
+				Habit:<br>
+				<input type="text" name="habitNameEdit"/><br>
+			</form>
 			<form id="habitDifficultyEdit">
+				Difficulty:<br>						
 				<input type="radio" id="habitDiff-1Ed" name="habitDiffEd" value="-1"/> Bad habit<br>
 				<input type="radio" id="habitDiff0Ed" name="habitDiffEd" value="0" /> Easy habit<br>
 				<input type="radio" id="habitDiff1Ed" name="habitDiffEd" value="1"/> Medium habit<br>
 				<input type="radio" id="habitDiff2Ed" name="habitDiffEd" value="2"/> Hard habit<br>
 			</form>
-			Repeat:<br>
-			<input type="checkbox" id="habitSuEd" name="habitDayEd" value="su"/> Sunday<br>			
-			<input type="checkbox" id="habitMoEd" name="habitDayEd" value="mo"/> Monday<br>
-			<input type="checkbox" id="habitTuEd" name="habitDayEd" value="tu"/> Tuesday<br>
-			<input type="checkbox" id="habitWeEd" name="habitDayEd" value="we"/> Wednesday<br>
-			<input type="checkbox" id="habitThEd" name="habitDayEd" value="th"/> Thursday<br>
-			<input type="checkbox" id="habitFrEd" name="habitDayEd" value="fr"/> Friday<br>
-			<input type="checkbox" id="habitSaEd" name="habitDayEd" value="sa"/> Saturday<br>			
-			
-			Notes:<br>
-			<textarea id="habitNotesEd" name="habitNotesEd" cols="40" row="5"></textarea><br>
-		</form>
-		<button id="saveEditHabitBtn">Save changes</button>
-		<button id="deleteHabitBtn">Delete habit</button>
-		<button id="cancelEditHabitBtn">Cancel</button>
+			<form id="habitDaysEdit">
+				Repeat:<br>						
+				<input type="checkbox" id="habitSuEd" name="habitDayEd" value="su"/> Sunday<br>			
+				<input type="checkbox" id="habitMoEd" name="habitDayEd" value="mo"/> Monday<br>
+				<input type="checkbox" id="habitTuEd" name="habitDayEd" value="tu"/> Tuesday<br>
+				<input type="checkbox" id="habitWeEd" name="habitDayEd" value="we"/> Wednesday<br>
+				<input type="checkbox" id="habitThEd" name="habitDayEd" value="th"/> Thursday<br>
+				<input type="checkbox" id="habitFrEd" name="habitDayEd" value="fr"/> Friday<br>
+				<input type="checkbox" id="habitSaEd" name="habitDayEd" value="sa"/> Saturday<br>			
+			</form>
+			<form id="habitNotesEditInput">
+				Notes:<br>
+				<textarea id="habitNotesEd" name="habitNotesEd" cols="40" row="5"></textarea><br>
+			</form>
+			<button class="modalButton confirmBtn" id="saveEditHabitBtn">Save changes</button>
+			<button class="modalButton deleteBtn" id="deleteHabitBtn">Delete habit</button>
+			<button class="modalButton cancelBtn" id="cancelEditHabitBtn">Cancel</button>
+		</div>
 	</div>
 </div>
 
