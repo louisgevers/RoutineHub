@@ -2,13 +2,27 @@
  * Opens a modal box with a button that opens it and that closes it
  */
 function modalBox(boxElementId, openBoxBtnId, closeBoxBtnId){
+    
+    var boxElement = $('#boxElementId');
+    var openBoxBtn = $('#openBoxBtnId');
+    var closeBoxBtn = $('#closeBoxBtnId');
+    var modalBoxes = $('#modalBox');
+
+	// var boxElement = document.getElementById(boxElementId);
+	// var openBoxBtn = document.getElementById(openBoxBtnId);
+	// var closeBoxBtn = document.getElementById(closeBoxBtnId);
+    // var modalBoxes = document.getElementsByClassName("modalBox");
 	
-	var boxElement = document.getElementById(boxElementId);
-	var openBoxBtn = document.getElementById(openBoxBtnId);
-	var closeBoxBtn = document.getElementById(closeBoxBtnId);
-    var modalBoxes = document.getElementsByClassName("modalBox");
-	
-	//Show box when clicking on the opening button and hide other boxes
+    //Show box when clicking on the opening button and hide other boxes
+    
+    // openBoxBtn.on('click', 'modalBox', function(){
+    //     modalBoxes.each(function(){
+    //         $(this).style.display = "none";
+    //         $(this).classList.remove("modaBox-here");
+    //     });
+    //     boxElement.style.display = "block";
+    //     setTimeout(function(){boxElement.classList.add("modalBox-here");}, 20);
+    // });
 	openBoxBtn.onclick = function(event){
 		for(i = 0; i < modalBoxes.length; i++){
             modalBoxes[i].style.display = "none";
@@ -18,7 +32,9 @@ function modalBox(boxElementId, openBoxBtnId, closeBoxBtnId){
         setTimeout(function(){boxElement.classList.add("modalBox-here");}, 20);
 	}
 	
-	//Hide box when clicking on the hiding button
+    //Hide box when clicking on the hiding button
+    
+  
 	closeBoxBtn.onclick = function(event){
         setTimeout(function(){boxElement.style.display = "none";}, 1100);
         boxElement.classList.remove("modalBox-here");    
@@ -187,8 +203,11 @@ var CreateGoalModule = (function(){
     var createGoalModal = new modalBox("addGoalBox", "addGoalBtn", "cancelCreateGoalBtn");
     
     //Form for input for new goal
-    var createGoalForm = document.getElementById("newGoalInput");
-    var createGoalBtn = document.getElementById("createGoalBtn");
+    var createGoalForm = $('#newGoalInput');
+    var createGoalBtn = $('#createGoalBtn');
+    // var createGoalForm = document.getElementById("newGoalInput");
+    // var createGoalBtn = document.getElementById("createGoalBtn");
+
     // Public appendgoal function that allows to add a goal to DOM
 
     var addNewGoal = function(){
@@ -213,6 +232,12 @@ var CreateGoalModule = (function(){
     }
 
     //React on create goal button
+    // createGoalBtn.on('click', function(){
+    //     addNewGoal();
+    //     //Hide modal
+    //     setTimeout(function(){$('#addGoalBox').style.display = "none";}, 1100);
+    //     $('#addGoalBox').classList.remove("modalBox-here");
+    // });
     createGoalBtn.onclick = function(event){
         addNewGoal();
         //Hide modal
@@ -244,10 +269,15 @@ var SeeGoalInfo = (function(){
 
     //Clicking on a goal opens it's info and hides others
     var seeInfo = function(infoBoxId){
+
+        
         this.infoBox = document.getElementById(infoBoxId + "GoalInfoBlock");
-        var selectedGoal = document.getElementById(infoBoxId);
-        var infoBoxes = document.getElementsByClassName("goalInfoBlock");
-        var goalBoxes = document.getElementsByClassName("goalBlock");
+        var selectedGoal = $('#infoBoxId');
+        var infoBoxes = $('.goalInfoBlock');
+        var goalBoxes = $('.goalBlock');
+        //var selectedGoal = document.getElementById(infoBoxId);
+        // var infoBoxes = document.getElementsByClassName("goalInfoBlock");
+        // var goalBoxes = document.getElementsByClassName("goalBlock");
 
         for(i = 0; i < goalBoxes.length; i++) {
             goalBoxes[i].classList.remove("selectedGoal");
@@ -269,17 +299,27 @@ var SeeGoalInfo = (function(){
     var editInfoModal = function(){
 
         //Declaring all kind of relevant elements
-        var editInfoBtn = document.getElementsByClassName("goalEditBtn");
-        var editForm = document.getElementById("editGoalInput")
-        var saveChangesBtn = document.getElementById("saveGoalEditsBtn");
-        var modalBoxes = document.getElementsByClassName("modalBox");
-        var deleteBtn = document.getElementById("deleteGoalBtn");
+        var editInfoBtn = $('.goalEditBtn');
+        var editForm = $('#editGoalInput');
+        var saveChangesBtn = $('#saveGoalEditsBtn');
+        var modalBoxes = $('.modalBox');
+        var deleteBtn = $('#deleteGoalBtn');
+
+        // var editInfoBtn = document.getElementsByClassName("goalEditBtn");
+        // var editForm = document.getElementById("editGoalInput")
+        // var saveChangesBtn = document.getElementById("saveGoalEditsBtn");
+        // var modalBoxes = document.getElementsByClassName("modalBox");
+        // var deleteBtn = document.getElementById("deleteGoalBtn");
+
         var editingGoal;     
         
          //Hide other modalBoxes cause this is a modalbox
         var hideBoxes = function(){
-                setTimeout(function(){document.getElementById("editGoalBox").style.display = "none";}, 1100);
-                document.getElementById("editGoalBox").classList.remove("modalBox-here");                            
+            setTimeout(function(){$('#editGoalBox').style.display = "none";}, 1100);
+            $('#editGoalBox').classList.remove("modalBox-here");
+
+            // setTimeout(function(){document.getElementById("editGoalBox").style.display = "none";}, 1100);
+            // document.getElementById("editGoalBox").classList.remove("modalBox-here");                            
         }
 
         //The actual edit for all edit buttons
@@ -299,6 +339,15 @@ var SeeGoalInfo = (function(){
                 editForm[1].value = editingGoal.getCategory();
 
                 //Show this modal box
+                // $('#editGoalBox').style.display = "block";
+                // setTimeout(function(){$('#editGoalBox').classList.add("modalBox-here");}, 20);
+                // $('#editGoalBox').on('click', function(event) {
+                //     if(event.target === this) {
+                //         hideBoxes();
+                //     }
+                // });
+
+
                 document.getElementById("editGoalBox").style.display = "block";
                 setTimeout(function(){document.getElementById("editGoalBox").classList.add("modalBox-here");}, 20);
                 document.getElementById("editGoalBox").onclick = function(event) {
@@ -321,6 +370,9 @@ var SeeGoalInfo = (function(){
                 }
 
                 //Hide edit box
+                // $('#cancelEditGoalBtn').on('click', function(){
+                //     hideBoxes();
+                // });
                 document.getElementById("cancelEditGoalBtn").onclick = function(){
                     hideBoxes();
                 };
@@ -361,9 +413,12 @@ var SeeGoalInfo = (function(){
  */
 var FilterGoals = (function(){
     //Relevant elements
-    var dropDownBtn = document.getElementById("dropdown");
-    var btnList = document.getElementById("goalsFilterBtns");
-    var filterBtns = document.getElementsByClassName("categBtn");
+    var dropDownBtn = $('#dropdown');
+    var btnList = $('#goalsFiltersBtns');
+    var filterBtns = $('.categBtn');
+    // var dropDownBtn = document.getElementById("dropdown");
+    // var btnList = document.getElementById("goalsFilterBtns");
+    // var filterBtns = document.getElementsByClassName("categBtn");
 
     var mousein = false;
 
@@ -388,9 +443,22 @@ var FilterGoals = (function(){
     var filter = function() {
         
         //All goal elements
-        var goalEl = document.getElementsByClassName("goalBlock");
+        var goalEl = $('.goalBlock');
+        //var goalEl = document.getElementsByClassName("goalBlock");
         
         //If choosing for all categories
+        // $('#allcategs').on('click', function(){
+        //     goalEl.each(function(){
+        //         this.style.display = "block";
+        //     });
+
+        //     //Close filter buttons
+        //     while(btnList.hasChildNodes()){
+        //         btnList.removeChild(btnList.lastChild);
+        //     }
+        //     openList = false;
+
+        // });
         document.getElementById("allcategs").onclick = function(){
             for(i = 0; i < goalEl.length; i++){
                 goalEl[i].style.display = "block";
