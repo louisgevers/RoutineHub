@@ -201,8 +201,7 @@ var CreateGoalModule = (function(){
             var newGoal = {
                 "name":name,
                 "category":category,
-                "highScore":0,
-                "habits":[]
+                "highScore":0
             }
 
             $.post("/addgoal", newGoal);
