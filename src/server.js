@@ -68,6 +68,7 @@ app.get("/getdata", function(req, res){
 app.post("/addgoal", function(req, res){
 
     var newGoal = req.body;
+    newGoal.habits = [];
     var contains = false;
     goalsList.forEach(function(goal){
         if(newGoal.name == goal.name){
