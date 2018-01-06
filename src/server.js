@@ -4,6 +4,8 @@
 var express = require('express');
 var http = require('http');
 var bodyParser = require('body-parser');
+var path = require('path');
+var mysql = require('mysql');
 
 var app = express();
 
@@ -65,6 +67,32 @@ app.get("/getdata", function(req, res){
     console.log("sent succesfully");
 });
 
+var con = mysql.createConnection({
+
+    host: 'localhost',
+    user: 'root',
+    password: '123456',
+    database: 'RoutineHub',
+});
+
+var query = 'SELECT id FROM goal;';
+
+con.connect(function(err) {
+    if (err) throw err;
+    console.log('Conencted to the database');
+    con.query(query, function (err, result, fields) {
+      if (err) throw err;
+      console.log(JSON.stringify(result));
+    });
+  });
+
+//routing to dashboard
+app.get("/dashboard", function(req, res){
+   
+    res.sendFile(path.join(__dirname + '/client/Analytics.html'))
+    console.log("sent succesfully");
+});
+
 app.post("/addgoal", function(req, res){
 
     var newGoal = req.body;
@@ -74,7 +102,7 @@ app.post("/addgoal", function(req, res){
         if(newGoal.name == goal.name){
             contains = true;
         }
-    })
+    });
 
     if(!contains){
         goalsList.push(newGoal);
@@ -93,7 +121,7 @@ app.post("/deletegoal", function(req, res){
             console.log(goal.name);
             goalsList.splice(goalsList.indexOf(goal), 1);
         }
-    })
+    });
 
     versionhash++;
 
@@ -107,7 +135,7 @@ app.post("/editgoal", function(req, res){
         if(goal.name == req.body.toEdit){
             toEditGoal = goal;
         }
-    })
+    });
 
     toEditGoal.name = req.body.name;
     toEditGoal.category = req.body.category;
@@ -149,7 +177,7 @@ app.post("/addhabit", function(req, res){
         if(goal.name == toAddGoal){
             goal.habits.push(newHabit);
         }
-    })
+    });
 
     versionhash++;
 
@@ -186,5 +214,6 @@ app.post("/deletehabit", function(req, res){
     versionhash++;
 
 });
+
 
 http.createServer(app).listen(3000);
