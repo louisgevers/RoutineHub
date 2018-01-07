@@ -104,11 +104,11 @@ CREATE TABLE `habit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
   `notes` text,
-  `difficulty_id` int(11) DEFAULT NULL,
-  `goal_id` int(11) DEFAULT NULL,
+  `difficulty_id` int(11) NOT NULL,
+  `goal_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `habit_habit_list_idx` (`goal_id`),
-  CONSTRAINT `habit_habit_list` FOREIGN KEY (`goal_id`) REFERENCES `goal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `habit_habit_list` FOREIGN KEY (`goal_id`) REFERENCES `goal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
