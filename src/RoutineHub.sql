@@ -62,6 +62,7 @@ CREATE TABLE `difficulty` (
 
 LOCK TABLES `difficulty` WRITE;
 /*!40000 ALTER TABLE `difficulty` DISABLE KEYS */;
+INSERT INTO `difficulty` VALUES (1,'bad'),(2,'easy'),(3,'medium'),(4,'hard');
 /*!40000 ALTER TABLE `difficulty` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -76,6 +77,7 @@ CREATE TABLE `goal` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` text,
   `category` varchar(45) DEFAULT NULL,
+  `highscore` int(11) DEFAULT NULL,
   `owner` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `habit_list_user_idx` (`owner`),
@@ -89,7 +91,7 @@ CREATE TABLE `goal` (
 
 LOCK TABLES `goal` WRITE;
 /*!40000 ALTER TABLE `goal` DISABLE KEYS */;
-INSERT INTO `goal` VALUES (1,'Family',NULL,1),(2,'Work',NULL,1),(3,'Hobby',NULL,2),(4,'Personal',NULL,2);
+INSERT INTO `goal` VALUES (1,'More family time','Family',NULL,1),(2,'More work time','Work',NULL,1),(3,'More hobby time','Hobby',NULL,2),(4,'More personal time','Personal',NULL,2);
 /*!40000 ALTER TABLE `goal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -104,11 +106,12 @@ CREATE TABLE `habit` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` text NOT NULL,
   `notes` text,
-  `difficulty_id` int(11) NOT NULL,
-  `goal_id` int(11) NOT NULL,
+  `difficulty_id` int(11) DEFAULT NULL,
+  `goal_id` int(11) DEFAULT NULL,
+  `highscore` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `habit_habit_list_idx` (`goal_id`),
-  CONSTRAINT `habit_habit_list` FOREIGN KEY (`goal_id`) REFERENCES `goal` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `habit_habit_list` FOREIGN KEY (`goal_id`) REFERENCES `goal` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -118,7 +121,7 @@ CREATE TABLE `habit` (
 
 LOCK TABLES `habit` WRITE;
 /*!40000 ALTER TABLE `habit` DISABLE KEYS */;
-INSERT INTO `habit` VALUES (1,'Pay Bills',NULL,NULL,NULL),(2,'Tidy up',NULL,NULL,NULL),(3,'Go to sleep before 10:30',NULL,NULL,4),(4,'Meditate',NULL,NULL,4),(5,'Draw',NULL,NULL,3),(6,'Call mom',NULL,NULL,1),(7,'Floss',NULL,NULL,4),(8,'Finish Homework',NULL,NULL,NULL),(9,'Go to sleep before 1:00',NULL,NULL,4),(10,'Exercise',NULL,NULL,NULL),(11,'Practice music instrument',NULL,NULL,3),(12,'Take nature pictures',NULL,NULL,3),(13,'Visit relatives',NULL,NULL,1);
+INSERT INTO `habit` VALUES (1,'Pay Bills',NULL,2,4,NULL),(2,'Tidy up',NULL,3,4,NULL),(3,'Go to sleep before 10:30',NULL,3,4,NULL),(4,'Meditate',NULL,3,4,NULL),(5,'Draw',NULL,2,3,NULL),(6,'Call mom',NULL,2,1,NULL),(7,'Floss',NULL,3,4,NULL),(8,'Finish Homework',NULL,4,2,NULL),(9,'Go to sleep before 1:00',NULL,2,4,NULL),(10,'Exercise',NULL,4,4,NULL),(11,'Practice music instrument',NULL,4,3,NULL),(12,'Take nature pictures',NULL,3,3,NULL),(13,'Visit relatives',NULL,3,1,NULL);
 /*!40000 ALTER TABLE `habit` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,4 +213,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-01-06 23:17:55
+-- Dump completed on 2018-01-07 21:18:40
