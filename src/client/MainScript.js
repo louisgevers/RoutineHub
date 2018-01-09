@@ -69,6 +69,17 @@ function Goal(name, category){
     };
 
     this.getHighScore = function(){
+
+        var habitsHighscore = 0;
+
+        this.habits.forEach(function(habit){
+            habitsHighscore = habitsHighscore + habit.getHighStreak();
+        });
+
+        if(habitsHighscore > this.highScore){
+            this.highScore = habitsHighscore;
+        };
+
         if(this.highScore < this.getCurrentScore()){
             this.highScore = this.getCurrentScore();
         }
@@ -88,6 +99,17 @@ function Goal(name, category){
         })
         return todo;
     };
+
+    this.getMissed = function(){
+
+        var missedScore = 0;
+
+        for(var i = 0; i < this.habits.length; i++){
+            missedScore = missedScore + this.habits[i].missScore;
+        };
+        
+        return missedScore;
+    }
 
 }
 
@@ -219,11 +241,21 @@ var CreateGoalModule = (function(){
         document.getElementById("addGoalBox").classList.remove("modalBox-here");
     }
 
+    var getProgressColor = function(goal){
+        if(goal.getMissed() == 0) {
+            return "green";
+        } else if (goal.getMissed() < 3){
+            return "orange";
+        } else {
+            return "red";
+        }
+    }
+
     //Public function to add goal to the DOM
     return{
         appendGoal: function(newGoal){
                 var goalBlock = "<div id=\"" + newGoal.getName() + "\" class=\"goalBlock columnBlock\" data-todotoday=\"" + newGoal.todoToday() +"\">"
-                                + "<div id=\"progressColor\"></div><strong>" + newGoal.getName() + "<div id=\"todotodayIcon\"></div></strong>" + ""
+                                + "<div id=\"progressColor\" data-missed=\"" + getProgressColor(newGoal) + "\"></div><strong>" + newGoal.getName() + "<div id=\"todotodayIcon\"></div></strong>" + ""
                                 + "<div class=\"goalInfoBlock columnBlockContent\" id=\"" + newGoal.getName() + "GoalInfoBlock\">"
                                 + "<div>Category: <b class=\"goalValue categoryValue\">" + newGoal.getCategory()  + "</b></div>"
                                 + "<div id=\"" + newGoal.getName() + "_currSco\">Current score: <b class=\"goalValue scoreValue\" data-score=\"" + newGoal.getCurrentScore() + "\">" + newGoal.getCurrentScore() + "</b></div>"
@@ -308,11 +340,11 @@ var SeeGoalInfo = (function(){
             
                 //Update changes in array, clear the DOM to refill it with the new array values
                 saveChangesBtn.onclick = function(){
-                    var toEdit = editingGoal.getName();
+                    var id = editingGoal.id;
                     var name = editForm[0].value;
                     var category = editForm[1].value;
                     
-                    $.post("/editgoal", {"toEdit":toEdit, "name":name, "category":category});
+                    $.post("/editgoal", {"id":id, "name":name, "category":category});
 
                     //Hide the modal box
                     hideBoxes();        
@@ -327,7 +359,8 @@ var SeeGoalInfo = (function(){
                 //Remove element from array and DOM
                 deleteBtn.onclick = function(){
                     var name = editingGoal.getName();
-                    $.post("/deletegoal", {"name":name});
+                    var id = editingGoal.id;
+                    $.post("/deletegoal", {"id": id, "name":name});
                     hideBoxes();
                 }
 
@@ -461,7 +494,6 @@ var appendHabbit = function(habit){
     var repeats = function(){
         var daysOfWeek = ["su", "mo", "tu", "we", "th", "fr", "sa"]
         var habitDays = habit.getDays();
-        console.log(habit.getName() + habitDays);
         var dayString = "";
 
         for(i = 0; i < 7; i++){
@@ -528,7 +560,7 @@ var refreshHabits = function(){
                         if(habit.getName() == habitBox.id.substring(0, habitBox.id.length - 4)){
                             contextHabit = habit;
                         }
-                    })
+                    });
         
                     //Only shows the contexthabit
                     HabitsInfo.hideHabbitBoxes();
@@ -580,11 +612,11 @@ var refreshHabits = function(){
 
                         clickedHabit.finishHabit();
 
-                        var checkedHabit = clickedHabit.getName();
+                        var id = clickedHabit.id;
                         var currentStreak = clickedHabit.getCurrentStreak();
                         var highStreak = clickedHabit.getCurrentStreak();
 
-                        $.post("/habitcheck", {"checkedHabit":checkedHabit, "currentStreak":currentStreak, "highStreak":highStreak});
+                        $.post("/habitcheck", {"id":id, "currentStreak":currentStreak, "highStreak":highStreak});
 
                     }
                 }
@@ -660,9 +692,9 @@ var refreshHabits = function(){
                             days.push(editDays[i].checked);
                         }
                         var notes = editNotes.value;
-                        var toEdit = contextHabit.getName();
+                        var toEdit = contextHabit.id;
                         
-                        $.post("/edithabit", {"toEdit": toEdit,"name":name, "difficulty":difficulty, "days":days, "notes":notes})
+                        $.post("/edithabit", {"id": toEdit,"name":name, "difficulty":difficulty, "days":days, "notes":notes})
 
                         hideBoxes();
                     }
@@ -703,9 +735,9 @@ var addNewHabit = (function(){
                 days.push(daysCheckBxs[i].checked);
             }
             var notes = document.getElementById("habitNotes").value;
-            var toAddGoal = contextGoal.getName();
+            var toAddGoal = contextGoal.id;
 
-            $.post("/addhabit", {"goalName":toAddGoal, "name":habitName, "difficulty":difficulty, "days":days, "notes":notes});
+            $.post("/addhabit", {"goal_id":toAddGoal, "name":habitName, "difficulty":difficulty, "days":days, "notes":notes});
 
 
             //Reset input boxes
@@ -728,8 +760,8 @@ var addNewHabit = (function(){
     var deleteHabit = (function(){
 
         document.getElementById("deleteHabitBtn").onclick = function(event){
-            var toDelete = contextHabit.getName();
-            $.post("/deletehabit", {"toDelete":toDelete});
+            var toDelete = contextHabit.id;
+            $.post("/deletehabit", {"id":toDelete});
             setTimeout(function(){document.getElementById("editHabitBox").style.display = "none";}, 1100);
             document.getElementById("editHabitBox").classList.remove("modalBox-here");        
         }
@@ -797,11 +829,14 @@ setInterval(function(){
             goalsList.forEach(function(goal){
 
                 var localGoal = new Goal(goal.name, goal.category);
+                localGoal.id = goal.id;
                 localGoal.setHighScore(parseInt(goal.highScore));
 
                 if(goal.habits){
                     goal.habits.forEach(function(habit){
                         var localHabit = new Habit(habit.name, parseInt(habit.difficulty), habit.days, habit.notes);
+                        localHabit.id = habit.id;
+                        localHabit.missScore = habit.missScore;
                         localHabit.currentStreak = parseInt(habit.currentStreak);
                         localHabit.highStreak = parseInt(habit.highStreak);
                         localHabit.accomplished = habit.accomplished;
@@ -823,8 +858,6 @@ setInterval(function(){
 
             contextGoal = goalsArray[0];
             contextHabit = goalsArray[0].getHabits()[0];
-            console.log(goalsArray);
-            console.log(habitsArray);
             SeeGoalInfo.setGoalListener();
             refreshHabits();
             fillCategories(categoriesArray);

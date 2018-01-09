@@ -154,10 +154,23 @@ header a:hover {
     width: 40px;
     height: 70px;
     border-radius: 5px;
-    transform: translate(-3px, -2px);
-    background-color: #00B050;
+    transform: translate(-3px, -2px); 
     z-index: 3;
 }
+
+#progressColor[data-missed="green"] {
+    background-color: #00B050;    
+}
+
+#progressColor[data-missed="orange"] {
+    background-color: rgb(295, 192, 0);    
+}
+
+#progressColor[data-missed="red"] {
+    background-color: rgb(231, 79, 79);    
+}
+
+
 
 .goalBlock .goalInfoBlock, .habitBlock .habitInfoBlock {
     font-family: 'Open Sans', sans-serif;
@@ -360,6 +373,7 @@ header a:hover {
     position: absolute;
     display: inline-block;
     border: none;
+    outline: none;
     height: 50px;
     width: 50px;
     margin: 6px;
@@ -369,6 +383,16 @@ header a:hover {
 
 .selectedHabit .habFinBtn {
     background-color: #afababab;
+}
+
+.habFinBtn:hover::before {
+    content: "✔";
+    font-size: 30px;
+    color:#8a8a8aab;
+}
+
+.habFinBtn:active {
+    box-shadow: inset 0 0 10px black;
 }
 
 .habitBlock .habFinBtn[data-accomplished="true"]::before {
