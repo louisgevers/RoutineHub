@@ -513,7 +513,7 @@ var appendHabbit = function(habit){
     //The whole habit DOM element
     var habitBlock = "<div class=\"habitBlock columnBlock\" id=\"" + habit.getName() + "_hab\" data-todotoday=\"" + habit.getTaskToday() + "\">"
                     + "<button id=\"" + habit.getName() + "_habFin\" class=\"habFinBtn\" data-accomplished=\"" + habit.accomplished + "\"><span>Check</span></button>" 
-                    + "<strong>" + habit.getName() + "<div id=\"todotodayIcon\"></div></strong>"
+                    + "<strong>" + habit.getName() + "<div id=\"todotodayIcon\"></div><span class=\"checkscores\" data-difficulty=\"" + habit.getDifficulty() + "\">" + habit.difficultyScore() + "<span></strong>"
                     + "<div class=\"habitInfoBlock columnBlockContent\" id=\"" + habit.getName() + "_habInfo\">" 
                     + habitTodo()
                     + "<p>Difficulty:  " + habitDifficulty() + "</p>"
