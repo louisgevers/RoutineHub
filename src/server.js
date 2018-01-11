@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 var con = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
+    user: 'server',
     password: '123456',
     database: 'RoutineHub',
 });
@@ -164,10 +164,30 @@ var queryGoals = function(){
             toAddGoal = result[i];
             toAddGoal.habits = getHabits(i);
 
+            habitsCompletedPerGoal(toAddGoal);
+
             goalsList.push(toAddGoal);
 
         }
     });
+
+    var habitsCompletedPerGoal = function(goal){
+
+        goal.habitsCompleted = [];
+
+        var queryCompletedHabits = function(days){return "SELECT COUNT(timestamp) AS completed FROM habit_done WHERE DATE(timestamp) = CURDATE() - "+ parseInt(days) +" AND habit_id IN (SELECT id FROM habit WHERE goal_id = "+ goal.id +");";}
+
+        for(var i = 0; i < 8; i++){
+            con.query(queryCompletedHabits(i), function(error, result, fields){
+                if (error) throw error;
+
+                goal.habitsCompleted.push(result[0].completed);
+
+            });
+        }
+
+        setTimeout(function(){console.log(JSON.stringify(goal.habitsCompleted))}, 200);
+    };
 
 };
 
