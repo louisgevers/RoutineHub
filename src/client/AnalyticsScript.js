@@ -231,7 +231,7 @@ var CreateGoalModule = (function () {
                 + "<div id=\"" + newGoal.getName() + "_currSco\">Current score: <b class=\"goalValue scoreValue\" data-score=\"" + newGoal.getCurrentScore() + "\">" + newGoal.getCurrentScore() + "</b></div>"
                 + "<div id=\"" + newGoal.getName() + "_highSco\">High score: <b class=\"goalValue scoreValue\" data-score=\"" + newGoal.getHighScore() + "\">" + newGoal.getHighScore() + "</b></div><br>"
                 + "<button id=\"" + newGoal.getName() + "_editBtn\"" + "\" class=\"goalEditBtn\">Edit</button>"
-                + "<button id=\"" + newGoal.getName() + "_goalGraphBtn\"" + "\" class=\"goalGraphBtn\">See Proggress</button>"
+                + "<button id=\"" + newGoal.getName() + "_goalGraphBtn\"" + "\" class=\"goalGraphBtn\">See Progress</button>"
                 + "</div></div>";
             $('#goalsList').append(goalBlock);
         }
@@ -822,12 +822,27 @@ var SearchFilter = (function () {
 
 var graphScript = (function(){
     var ctx = document.getElementById("myChart");
+    dateset = [];
     var date = new Date();
+    var adate = function(){return date.setDate(date.getDate()-20);}
+
+    console.log(adate());
+    for(var i = 0; i < 7; i++){
+        dateset[i] = date.setDate(date.getDate()+(i-6)).toString();
+        
+    }
     
+    // var dateone = date.setDate(date.getDate()-6);
+    // var datetwo = date.setDate(date.getDate()-5);
+    // var datethree = date.setDate(date.getDate()-4);
+    // var datefour = date.setDate(date.getDate()-3);
+    // var datefive = date.setDate(date.getDate()-2);
+    // var datesix = date.setDate(date.getDate()-1);
+    // var dateseven = date.setDate(date.getDate());
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [date.getDate(), "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: [dateset[0], dateset[1], dateset[2], dateset[3], "Purple", "Orange"],
             datasets: [{
                 label: '# of Completed Habits',
                 data: [12, 19, 3, 5, 2, 3],

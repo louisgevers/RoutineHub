@@ -544,3 +544,18 @@ header a:hover {
 .habitBlock strong{
     padding-left: 1.7em;
 }
+
+#main {
+
+    clear: both;
+    position: absolute;
+    right: 7em;
+    top: 2em;
+    background-color: #79C180;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Dosis', sans-serif; 
+    padding: 0.5em;
+    border-radius: 3px;
+
+}
