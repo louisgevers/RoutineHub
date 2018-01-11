@@ -250,8 +250,17 @@ var re = function(){
     
     for(var i = 0; i < openBtn.length; i++){
         openBtn[i].onclick = function(e){
+            var clickedBtnId = e.target.id;
+            var openedGoal;
+            goalsArray.forEach(function(goal){
+                if(goal.getName() === clickedBtnId.substring(0, clickedBtnId.length - 13)){
+                    openedGoal = goal;
+                }
+            });
+            var completednumber = openedGoal.habitsCompleted;
             graph.style.display = "block";
             setTimeout(function(){graph.classList.add("modalBox-here");}, 20);
+            graphScript(completednumber);
     }
 
     closeBtn.onclick = function(){
@@ -820,32 +829,58 @@ var SearchFilter = (function () {
 
 })();
 
-var graphScript = (function(){
+var graphScript = function(completedHabits){
     var ctx = document.getElementById("myChart");
     dateset = [];
-    var date = new Date();
-    var adate = function(){return date.setDate(date.getDate()-20);}
-
-    console.log(adate());
-    for(var i = 0; i < 7; i++){
-        dateset[i] = date.setDate(date.getDate()+(i-6)).toString();
-        
-    }
     
-    // var dateone = date.setDate(date.getDate()-6);
-    // var datetwo = date.setDate(date.getDate()-5);
-    // var datethree = date.setDate(date.getDate()-4);
-    // var datefour = date.setDate(date.getDate()-3);
-    // var datefive = date.setDate(date.getDate()-2);
-    // var datesix = date.setDate(date.getDate()-1);
-    // var dateseven = date.setDate(date.getDate());
+    var getMonthFormat = function(month){
+        switch(month){
+            case 0:
+            return "Jan";
+            break;
+            case 1:
+            break;
+            case 2:
+            break;
+            case 3:
+            break;
+            case 4:
+            break;
+            case 5:
+            break;
+            case 6:
+            break;
+            case 7:
+            break;
+            case 8:
+            break;
+            case 9:
+            break;
+            case 10:
+            break;
+            case 11:
+            break;           
+        }
+    }
+    var getDateFormat = function(daysAgo){
+        var format;
+        var date = new Date();
+        var days = parseInt(date.getDate()) - daysAgo;
+        format = parseInt(days) + " " + getMonthFormat(date.getMonth());
+        return format;
+    }
+
+    getDateFormat();
+
+    
+
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [dateset[0], dateset[1], dateset[2], dateset[3], "Purple", "Orange"],
+            labels: [getDateFormat(6), getDateFormat(5), getDateFormat(4), getDateFormat(3), getDateFormat(2), getDateFormat(1), getDateFormat(0)],
             datasets: [{
                 label: '# of Completed Habits',
-                data: [12, 19, 3, 5, 2, 3],
+                data: [completedHabits[6], completedHabits[5], completedHabits[4], completedHabits[3], completedHabits[2], completedHabits[1], completedHabits[0]],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -865,19 +900,20 @@ var graphScript = (function(){
                 borderWidth: 1
             }]
         },
-        // options: {
-        //     scales: {
-        //         yAxes: [{
-        //             ticks: {
-        //                 beginAtZero:true
-        //             }
-        //         }]
-        //     }
-        // }
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true,
+                        callback: function(value) {if (value % 1 === 0) {return value;}}
+                    }
+                }]
+            }
+        }
     });
 
     
-})();
+};
 
 
 
@@ -911,6 +947,9 @@ setInterval(function () {
 
                 var localGoal = new Goal(goal.name, goal.category);
                 localGoal.setHighScore(parseInt(goal.highScore));
+                localGoal.habitsCompleted = goal.habitsCompleted;
+
+                console.log(JSON.stringify(localGoal.habitsCompleted));
 
                 if (goal.habits) {
                     goal.habits.forEach(function (habit) {
