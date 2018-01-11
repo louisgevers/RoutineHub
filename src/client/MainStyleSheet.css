@@ -34,7 +34,7 @@ header input:focus {
     font-weight: bold;
 }
 
-header a {
+#signout {
     clear: both;
     position: absolute;
     right: 2em;
@@ -47,10 +47,31 @@ header a {
     border-radius: 3px;
 }
 
+#dashboard {
+
+    clear: both;
+    position: absolute;
+    right: 7em;
+    top: 2em;
+    background-color: #79C180;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Dosis', sans-serif; 
+    padding: 0.5em;
+    border-radius: 3px;
+
+}
+
 header a:hover {
     color: #79C180;
     background-color: #595959;
 }
+
+header a #dashboard {
+    position: relative;
+    right: 5em;
+}
+
 
 .cssclearer {
     clear: both;
@@ -547,3 +568,9 @@ header a:hover {
 .modalBox .deleteBtn {
     background-color: rgb(194, 86, 86);
 }
+
+#signout:hover, #dashboard:hover{
+    color: #79C180;
+    background-color: #595959;
+}
+

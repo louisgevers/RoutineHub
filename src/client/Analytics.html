@@ -1,0 +1,246 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+	<title>RoutineHub | Analytics</title>
+	<link rel="stylesheet" type="text/css" href="EntryPageStyleSheet.css" />
+    <link rel="stylesheet" type="text/css" href="AnalyticsStyleSheet.css" />
+	<link href="https://fonts.googleapis.com/css?family=Dosis:800" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+	
+</head>
+
+<body>
+
+	<a href="main.html"><img src="Images/DreamCatcherLogo.png" alt="RoutineHub Logo" id="logo" /></a>
+
+	<!-- Contains the logo & name of the website and a search bar -->
+	<header>
+		<h1>RoutineHub</h1>
+		<input id="searchBar" type="text" name="search" placeholder="Search" />
+		<p>
+			<a href="EntryPage.html">Sign out</a>
+		</p>
+	</header>
+
+	<div class="cssclearer"></div>
+
+	<!-- The Goals column -->
+	<div class="column">
+
+		<h2>Goals</h2>
+		<div class="cssclearer"></div>
+		<button class="infoButton" id="goalsInfoBtn">
+			<span>Info</span>
+		</button>
+		<button class="addButton" id="addGoalBtn">
+			<span>Add goal</span>
+		</button>
+
+		<div class="cssclearer"></div>
+
+		<div class="columnContent">
+			<div id="dropdown">
+				<button class="dropbtn" id="filterGoalsBtn">
+					<span>▼ </span>Filter</button>
+				<div class="dropbtncontent" id="goalsFilterBtns"></div>
+			</div>
+			<div id="goalsList"></div>
+		</div>
+
+	</div>
+
+	<!-- The Habits column -->
+	<div class="column">
+
+		<h2>Habits</h2>
+		<div class="cssclearer"></div>
+		<button class="infoButton" id="habitsInfoBtn">
+			<span>Info</span>
+		</button>
+		<button class="addButton" id="addHabitBtn">
+			<span>Add habits</span>
+		</button>
+
+		<div class="cssclearer"></div>
+
+		<div class="columnContent" id="habitsList">
+
+		</div>
+
+	</div>
+
+
+	<!-- The Goals info modal box (should be invisible) -->
+	<div class="modalBox" id="goalsInfoBox">
+
+        <div class="modalBoxContent">
+            <button class="close" id="closeGoalsInfo">&times;</button>
+            <h3>Goals</h3>
+            <p>In this section you can see your progress.<br>
+                <br> When you click on a goal it will show your success percentage depending on your habit completion rate.
+                <br> Also you can check the graph tosee how well you did in completing your tasks per date.
+            </p>
+        </div>
+	</div>
+
+	<!-- The Habits info modal box (should be invisible) -->
+	<div class="modalBox" id="habitsInfoBox">
+
+		<div class="modalBoxContent">
+
+			<button class="close" id="closeHabitsInfo">&times;</button>
+
+			<h3>Habits</h3>
+			<p>You can see your progress per habit on this section by clicking on a habit.
+            </p>
+
+		</div>
+
+	</div>
+
+
+	<div class="modalBox" id="addGoalBox">
+		<div class="modalBoxContent">
+			<h3>New Goal</h3>
+			<form id="newGoalInput">
+				Goal:
+				<br>
+				<input type="text" name="goalName" />
+				<br> Category:
+				<br>
+				<input type="text" name="goalCategory" />
+				<br>
+			</form>
+			<button class="modalButton confirmBtn" id="createGoalBtn">Add new goal</button>
+			<button class="modalButton cancelBtn" id="cancelCreateGoalBtn">Cancel</button>
+		</div>
+	</div>
+
+	
+
+	<div class="modalBox" id="createHabitBox">
+		<div class="modalBoxContent">
+			<h3>Add new habit</h3>
+			<form id="newHabitInput">
+				Habit:
+				<br>
+				<input type="text" name="habitName" />
+				<br>
+			</form>
+			<form id="habitDifficulty">
+				Difficulty:
+				<br>
+				<input type="radio" id="habitDiff-1" name="habitDiff" value="-1" /> Bad habit
+				<br>
+				<input type="radio" id="habitDiff0" name="habitDiff" value="0" checked/> Easy habit
+				<br>
+				<input type="radio" id="habitDiff1" name="habitDiff" value="1" /> Medium habit
+				<br>
+				<input type="radio" id="habitDiff2" name="habitDiff" value="2" /> Hard habit
+				<br>
+			</form>
+			<form id="habitDays">
+				Repeat:
+				<br>
+				<input type="checkbox" id="habitSu" name="habitDay" value="su" /> Sunday
+				<br>
+				<input type="checkbox" id="habitMo" name="habitDay" value="mo" /> Monday
+				<br>
+				<input type="checkbox" id="habitTu" name="habitDay" value="tu" /> Tuesday
+				<br>
+				<input type="checkbox" id="habitWe" name="habitDay" value="we" /> Wednesday
+				<br>
+				<input type="checkbox" id="habitTh" name="habitDay" value="th" /> Thursday
+				<br>
+				<input type="checkbox" id="habitFr" name="habitDay" value="fr" /> Friday
+				<br>
+				<input type="checkbox" id="habitSa" name="habitDay" value="sa" /> Saturday
+				<br>
+			</form>
+			<form id="habitNotesInput">
+				Notes:
+				<br>
+				<textarea id="habitNotes" name="habitNotes" cols="40" row="5"></textarea>
+				<br>
+			</form>
+			</form>
+			<button class="modalButton confirmBtn" id="createHabitBtn">Add new habit</button>
+			<button class="modalButton cancelBtn" id="cancelCreateHabitBtn">Cancel</button>
+		</div>
+	</div>
+
+	<div class="modalBox" id="editHabitBox">
+		<div class="modalBoxContent">
+			<h3>Edit habit</h3>
+			<form id="editHabitInput">
+				Habit:
+				<br>
+				<input type="text" name="habitNameEdit" />
+				<br>
+			</form>
+			<form id="habitDifficultyEdit">
+				Difficulty:
+				<br>
+				<input type="radio" id="habitDiff-1Ed" name="habitDiffEd" value="-1" /> Bad habit
+				<br>
+				<input type="radio" id="habitDiff0Ed" name="habitDiffEd" value="0" /> Easy habit
+				<br>
+				<input type="radio" id="habitDiff1Ed" name="habitDiffEd" value="1" /> Medium habit
+				<br>
+				<input type="radio" id="habitDiff2Ed" name="habitDiffEd" value="2" /> Hard habit
+				<br>
+			</form>
+			<form id="habitDaysEdit">
+				Repeat:
+				<br>
+				<input type="checkbox" id="habitSuEd" name="habitDayEd" value="su" /> Sunday
+				<br>
+				<input type="checkbox" id="habitMoEd" name="habitDayEd" value="mo" /> Monday
+				<br>
+				<input type="checkbox" id="habitTuEd" name="habitDayEd" value="tu" /> Tuesday
+				<br>
+				<input type="checkbox" id="habitWeEd" name="habitDayEd" value="we" /> Wednesday
+				<br>
+				<input type="checkbox" id="habitThEd" name="habitDayEd" value="th" /> Thursday
+				<br>
+				<input type="checkbox" id="habitFrEd" name="habitDayEd" value="fr" /> Friday
+				<br>
+				<input type="checkbox" id="habitSaEd" name="habitDayEd" value="sa" /> Saturday
+				<br>
+			</form>
+			<form id="habitNotesEditInput">
+				Notes:
+				<br>
+				<textarea id="habitNotesEd" name="habitNotesEd" cols="40" row="5"></textarea>
+				<br>
+			</form>
+			<button class="modalButton confirmBtn" id="saveEditHabitBtn">Save changes</button>
+			<button class="modalButton deleteBtn" id="deleteHabitBtn">Delete habit</button>
+			<button class="modalButton cancelBtn" id="cancelEditHabitBtn">Cancel</button>
+		</div>
+
+		
+	</div>
+	<div class="modalBox" id="progressGraph">
+		<div class="modalBoxContent">
+			<button class="close cancelBtn" id="closeProgressGraph">&times;</button>
+				<h3>Your Progress</h3>
+				<canvas id="myChart" width="400" height="400"></canvas>
+	
+		</div>
+
+	</div>
+
+	
+
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	<script src="AnalyticsScript.js"></script>
+    
+
+</body>
+
+</html>

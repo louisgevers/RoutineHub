@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 var con = mysql.createConnection({
     host: 'localhost',
-    user: 'server',
+    user: 'root',
     password: '123456',
     database: 'RoutineHub',
 });
