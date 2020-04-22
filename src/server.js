@@ -187,4 +187,5 @@ app.post("/deletehabit", function(req, res){
 
 });
 
-http.createServer(app).listen(3000);
+const port = process.env.PORT || 8080;
+http.createServer(app).listen(port);
